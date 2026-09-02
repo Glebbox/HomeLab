@@ -26,13 +26,14 @@
 Далее я начал изучать что такое Docker и DockerCompose. Как я пока что понял это просто изолированная среда для запуска всяких приложений. Избавляет от проблемы "на одном устройстве работает, а на другом нет"
 
 Подключил репозитории Docker следующими коммандами:
+```
 curl -fsSL https://download.docker.com/linux/debian/gpg \
   | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
   | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
+```
 Были проблемы с ipv6 решилось это принудительной настройкой всей системы по ipv4.
 
 Первым делом на сервере я настроил Jellyfin. Скачал образ контейнера, запустил его, открыл веб-интерфейс по адресу 192.168.1.50:8096, прошёл первоначальную настройку и создал двух пользователей: администратора и зрителя.

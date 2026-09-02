@@ -49,3 +49,4 @@ echo \
 <img width="946" height="506" alt="изображение" src="https://github.com/user-attachments/assets/f1797de6-99b2-4d8f-b418-9ae0abf3e38b" />
 Во время генирации ответа:
 <img width="940" height="496" alt="изображение" src="https://github.com/user-attachments/assets/da169390-22fb-476e-aa58-429c5f140d80" />
+Поправка: при использовании OpenWebUI заметил что ллм очень сильно тупит, причину пока не знаю. Так же ллм много врет и додумывает факты. Не умеет искать инфу в интернете. Буду ставить 7b.

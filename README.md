@@ -87,4 +87,27 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
         upgrade: safe
 ```
 Результат:  
-<img width="1151" height="339" alt="изображение" src="https://github.com/user-attachments/assets/993647d1-9fbc-44a7-afff-eb1da43d2e84" />
+<img width="1151" height="339" alt="изображение" src="https://github.com/user-attachments/assets/993647d1-9fbc-44a7-afff-eb1da43d2e84" />  
+
+Далее мне в голову пришла идея: "Заходить на IP адреса сервисов через ip:порт как-то тупо" и я решил посмотреть какие есть решения. Есть решение натсроить Nginx reverse proxy и записать там все сервисы. Но позже я нашел еще более взрослое решение - перенести все контейнеры внутрь кубера и там уже с помощью ингреса перенаправлять запросы в контейнеры. Да я прекрасно понимаю что кубер для моей машины это слишком изботочное решение и обычного docker-compose хватит более чем, но думаю лишним опыт лишним уж точно не будет. Так что я решил поставить K3s, как более легкую версию кубера.  
+Буду использовать ранее изученый инструмент для установки k3s.  
+Выполнил:
+```
+ansible-galaxy collection install git+https://github.com/k3s-io/k3s-ansible.git
+ansible-playbook -i inventory.ini -K k3s.orchestration.site
+```
+С первого раза естественно не запустилось, пришлось подковырять файл inventory.ini добавив в него:
+```
+[k3s_cluster:children]
+server
+agent
+
+[k3s_cluster:vars]
+k3s_version=v1.37.1+k3s1
+api_endpoint=192.168.1.50
+
+[agent]
+```
+Далее уже все пошло как по маслу и Ansible успешно установил на сервер k3s.
+Результат:  
+<img width="611" height="88" alt="изображение" src="https://github.com/user-attachments/assets/f1d5d804-0b7d-4ae9-8b3f-61dd374f201c" />

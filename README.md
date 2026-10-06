@@ -108,6 +108,6 @@ api_endpoint=192.168.1.50
 
 [agent]
 ```
-Далее уже все пошло как по маслу и Ansible успешно установил на сервер k3s.
+Далее уже все пошло как по маслу и Ansible успешно установил на сервер k3s.  
 Результат:  
 <img width="611" height="88" alt="изображение" src="https://github.com/user-attachments/assets/f1d5d804-0b7d-4ae9-8b3f-61dd374f201c" />

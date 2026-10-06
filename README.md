@@ -75,6 +75,16 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 Поправка: WireGuard и Tailscale отменяется, оно заблокировано в РФ походу.
 
 Со следущего шага думаю перейти на управление сервером через Ansible. Плюсы его можно раскрыть по полной настраивая несколько серверов одновременно. Я же его использую просто потому что хочу. Создал отдельную папку для всякого связаным с Ansible. Создал файл inventory.ini, прописал в нем ip, пользователя и приватный ключ для входа. Для пробы софта написал простенький плейбук, который обновляет установленные пакеты. Как я понял это просто имитация команды "sudo apt update && sudo apt upgrade".  
+```
+- name: Update Debian packages
+  hosts: myhosts
+  become: true
 
+  tasks:
+    - name: Update package lists and upgrade
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: safe
+```
 Результат:  
 <img width="1151" height="339" alt="изображение" src="https://github.com/user-attachments/assets/993647d1-9fbc-44a7-afff-eb1da43d2e84" />
